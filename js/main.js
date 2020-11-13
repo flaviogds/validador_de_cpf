@@ -25,24 +25,35 @@ function validation(input) {
 
     let soma = 0;
     let valid = '';
+    let sequence = 0;
 
-    for(i = 0; i < array.length; i++) {
-        soma = soma + parseInt(array[i])*(10-i);
+    for(i = 0; i < array.length; i++){
+        sequence += parseInt(array[i])
+        console.log(sequence)
+    }
+    if(sequence !== 9*array[1]){
+        valid=true;
     }
 
-    valid = (soma*10)%11 == 10 || (soma*10)%11 == 11 ? 0 : (soma*10)%11;
-
-    if(valid == parseInt(digits[0])) {
-        soma = 0;
-        array += digits.charAt(0);
-
+    if(valid){
         for(i = 0; i < array.length; i++) {
-            soma = soma + parseInt(array[i])*(11-i);
+            soma = soma + parseInt(array[i])*(10-i);
         }
-
+    
         valid = (soma*10)%11 == 10 || (soma*10)%11 == 11 ? 0 : (soma*10)%11;
-
-        return valid == parseInt(digits[1]);
+    
+        if(valid == parseInt(digits[0])) {
+            soma = 0;
+            array += digits.charAt(0);
+    
+            for(i = 0; i < array.length; i++) {
+                soma = soma + parseInt(array[i])*(11-i);
+            }
+    
+            valid = (soma*10)%11 == 10 || (soma*10)%11 == 11 ? 0 : (soma*10)%11;
+    
+            return valid == parseInt(digits[1]);
+        }
     }
 }
 
